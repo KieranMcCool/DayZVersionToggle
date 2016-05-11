@@ -1,6 +1,8 @@
 # DayZVersionToggle
 A tool for keeping Experimental and Stable branches installed at the same time
 
+[Download Latest Version](https://github.com/KieranMcCool/DayZVersionToggle/raw/master/Versions/VersionLatest.zip)
+
 # What this program does
 
 This program allows you to keep both an Experimental and Stable installation of DayZ Standalone at the same time. 
