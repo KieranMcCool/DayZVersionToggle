@@ -18,7 +18,6 @@ namespace DayZVersionToggle
         public frmMain()
         {
             InitializeComponent();
-            Properties.Settings.Default.Reset();
         }
 
         private void frmMain_Load(object sender, EventArgs e)
