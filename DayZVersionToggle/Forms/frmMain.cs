@@ -70,12 +70,17 @@ namespace DayZVersionToggle
             // Removes the version that steam doesn't know about and resets the program's settings.
             var unwanted = String.Format("{0} - {1}", Properties.Settings.Default.Directory, 
                 Program.oppositeVersion(Properties.Settings.Default.Version));
-            if (Directory.Exists(unwanted)) Program.deleteDirectory(unwanted);
+            var mbox = MessageBox.Show(String.Format("This will remove \"{0}\" and reset this application's settings.\nAre you sure you want to continue?", unwanted),
+                "Uninstall is srs biznis", MessageBoxButtons.YesNo);
+            if (mbox == DialogResult.Yes)
+            {
+                if (Directory.Exists(unwanted)) Program.deleteDirectory(unwanted);
 
-            Properties.Settings.Default.Reset();
-            Properties.Settings.Default.Save();
-            // Closes the program.
-            Application.Exit();
+                Properties.Settings.Default.Reset();
+                Properties.Settings.Default.Save();
+                // Closes the program.
+                Application.Exit();
+            }
         }
     }
 }
