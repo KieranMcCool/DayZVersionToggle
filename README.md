@@ -33,7 +33,7 @@ When you know an update is available for a particular branch, should use the "Ac
 
 # Things to Note
 
-As I this program (at the time of writing) is less than an hour old in it's completion and the sole tester has been me, I have no idea how aggressive Steam is when it sees that a game installation is out of sync with how it should be. As such, it is very important that you keep the active version in the program and the beta options in Steam the same. 
+As this program (at the time of writing) is less than an hour old in it's completion and the sole tester has been me, I have no idea how aggressive Steam is when it sees that a game installation is out of sync with how it should be. As such, it is very important that you keep the active version in the program and the beta options in Steam the same. 
 
 I don't imagine Steam would be so bold as to validate files while the game is running so when you play the opposite version from what Steam thinks you have by launching it through this program, it quickly switches the files then switches them back when DayZ exits. This should hopefully keep Steam from overwriting your branches.
 

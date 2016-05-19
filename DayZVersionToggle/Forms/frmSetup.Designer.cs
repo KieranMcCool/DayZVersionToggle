@@ -47,6 +47,8 @@
             // 
             // cbCurrent
             // 
+            this.cbCurrent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cbCurrent.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCurrent.FormattingEnabled = true;
             this.cbCurrent.Items.AddRange(new object[] {
@@ -68,23 +70,27 @@
             // 
             // tbDir
             // 
+            this.tbDir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tbDir.Location = new System.Drawing.Point(90, 5);
             this.tbDir.Name = "tbDir";
             this.tbDir.ReadOnly = true;
             this.tbDir.Size = new System.Drawing.Size(176, 20);
             this.tbDir.TabIndex = 3;
-            this.tbDir.Text = "D:\\Games\\Steam\\steamapps\\common\\DayZ";
             // 
             // btnDirChange
             // 
+            this.btnDirChange.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDirChange.Location = new System.Drawing.Point(261, 4);
             this.btnDirChange.Name = "btnDirChange";
             this.btnDirChange.Size = new System.Drawing.Size(21, 22);
             this.btnDirChange.TabIndex = 4;
             this.btnDirChange.UseVisualStyleBackColor = true;
+            this.btnDirChange.Click += new System.EventHandler(this.btnDirChange_Click);
             // 
             // btnNext
             // 
+            this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNext.Location = new System.Drawing.Point(207, 58);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(75, 23);
@@ -104,6 +110,7 @@
             this.Controls.Add(this.lblPath);
             this.Controls.Add(this.cbCurrent);
             this.Controls.Add(this.lblCurrent);
+            this.MinimumSize = new System.Drawing.Size(303, 127);
             this.Name = "frmSetup";
             this.Text = "Setup";
             this.ResumeLayout(false);

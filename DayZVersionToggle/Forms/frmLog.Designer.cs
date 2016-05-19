@@ -56,6 +56,9 @@
             // 
             // lbLog
             // 
+            this.lbLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lbLog.FormattingEnabled = true;
             this.lbLog.Location = new System.Drawing.Point(3, 21);
             this.lbLog.Name = "lbLog";
@@ -80,9 +83,9 @@
             this.Controls.Add(this.lbLog);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.progressBar1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(640, 464);
             this.Name = "frmLog";
             this.Text = "frmLog";
             this.Load += new System.EventHandler(this.frmLog_Load);

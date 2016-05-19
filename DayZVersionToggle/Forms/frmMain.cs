@@ -18,6 +18,7 @@ namespace DayZVersionToggle
         public frmMain()
         {
             InitializeComponent();
+            Properties.Settings.Default.Reset();
         }
 
         private void frmMain_Load(object sender, EventArgs e)
@@ -29,8 +30,11 @@ namespace DayZVersionToggle
         private void runSetup()
         {
             var s = new frmSetup();
-            s.ShowDialog();
-            frmMain_Load(null, null);
+            if (s.ShowDialog() != DialogResult.OK)
+            {
+                MessageBox.Show("Setup was not completed. Exiting.");
+                Application.Exit();
+            }
         }
 
         private void btnExperimental_Click(object sender, EventArgs e)

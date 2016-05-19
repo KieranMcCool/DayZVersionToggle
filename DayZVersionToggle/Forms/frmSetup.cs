@@ -25,9 +25,19 @@ namespace DayZVersionToggle
         {
             Properties.Settings.Default.Version = cbCurrent.Text;
             Properties.Settings.Default.Directory = tbDir.Text;
-            log.ShowDialog();
+            if (log.ShowDialog() == DialogResult.OK) this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
-        
+        private void btnDirChange_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                if (File.Exists(fbd.SelectedPath + @"\DayZ.exe"))
+                    tbDir.Text = fbd.SelectedPath;
+                else MessageBox.Show("Directory doesn't contain a DayZ Executable");
+            }
+        }
     }
 }
