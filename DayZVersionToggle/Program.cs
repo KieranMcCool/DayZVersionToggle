@@ -58,18 +58,37 @@ namespace DayZVersionToggle
 
         public static void switchInstallation(string desiredVersion, bool updateProperty)
         {
-            // req = Requested (what user wants installed) , opposite = The opposite of requested :P , Dest = DayZ Dir
-            string req = String.Format("{0} - {1}", Properties.Settings.Default.Directory, desiredVersion);
-            string opposite = String.Format("{0} - {1}", Properties.Settings.Default.Directory, oppositeVersion(desiredVersion));
-            string dest = Properties.Settings.Default.Directory;
+            var swap = new Action<string, string, string>((target, destination, extension) => {
+                if (Directory.Exists(target))
+                {
+                    Directory.Move(destination, string.Format("{0} - {1}", destination, extension));
+                    Directory.Move(target, destination);
+                }
+                else if (File.Exists(target))
+                {
+                    File.Move(destination, string.Format("{0} - {1}", destination, extension));
+                    File.Move(target, destination);
+                }
+                else throw new Exception(string.Format("Target directory: {0} does not exist on the filesystem.",
+                    target));
+            });
 
-            // If the directory we're swapping to exists, we can't swap so fail.
-            if (Directory.Exists(opposite)) return;
+            try
+            {
+                string req = String.Format("{0} - {1}", Properties.Settings.Default.Directory, desiredVersion);
+                string dest = Properties.Settings.Default.Directory;
+                swap(req, dest, oppositeVersion(desiredVersion));
 
-            // Move the Current installation to separate folder
-            Directory.Move(dest, opposite);
-            // Move requested to dayz dir
-            Directory.Move(req, dest);
+                dest = new DirectoryInfo(dest).Parent.Parent.FullName + @"\appmanifest_221100.acf";
+                req = string.Format("{0} - {1}", dest, desiredVersion);
+                swap(req, dest, oppositeVersion(desiredVersion));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error moving files. Submit log file for support.");
+                var sw = new StreamWriter(string.Format("log {0}.txt", DateTime.Now.Ticks), false);
+                sw.Write(string.Format("Message:\n{0}\nStack Trace:\n{1}", ex.Message, ex.StackTrace)); sw.Close(); sw.Dispose();
+            }
 
             // Updating property for (semi) permanent replace then do so and save.
             if (updateProperty)

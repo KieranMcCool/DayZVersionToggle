@@ -51,12 +51,20 @@ namespace DayZVersionToggle
 
         private void switchAndRun(string version)
         {
+            foreach (Control c in this.Controls) c.Enabled = false;
+            Task.Factory.StartNew(() => { launchGame(version); });
+        }
+
+        private void launchGame(string version)
+        {
             // Switch to desired installation
             Program.switchInstallation(version);
             // Launches game
             Program.runGame();
             // Switches back to what steam reckons is installed.
             Program.switchInstallation(Properties.Settings.Default.Version);
+
+            this.BeginInvoke(new MethodInvoker (() => { foreach (Control c in this.Controls) c.Enabled = true; } ));
         }
 
         private void btnApply_Click(object sender, EventArgs e)
