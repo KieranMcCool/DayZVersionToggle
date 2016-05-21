@@ -88,7 +88,6 @@
             this.MinimumSize = new System.Drawing.Size(640, 464);
             this.Name = "frmLog";
             this.Text = "Log";
-            this.Load += new System.EventHandler(this.frmLog_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

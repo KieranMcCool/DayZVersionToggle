@@ -17,6 +17,7 @@ namespace DayZVersionToggle
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            MessageBox.Show(startupChecks().ToString());
             Application.Run(new frmMain());
         }
 
@@ -112,6 +113,19 @@ namespace DayZVersionToggle
         {
             // Determines if a process with a given name is running.
             return (System.Diagnostics.Process.GetProcessesByName(process).Length != 0);
+        }
+
+        public static bool startupChecks()
+        {
+            string[] shouldExist = new string[] {
+                Properties.Settings.Default.Directory, Properties.Settings.Default.Directory + " - " + oppositeVersion(Properties.Settings.Default.Version),
+                new DirectoryInfo(Properties.Settings.Default.Directory).Parent.Parent.FullName + @"\appmanifest_221100.acf",
+                new DirectoryInfo(Properties.Settings.Default.Directory).Parent.Parent.FullName + @"\appmanifest_221100.acf" + " - " + 
+                oppositeVersion(Properties.Settings.Default.Version),
+            };
+
+            foreach (string s in shouldExist) if (!(Directory.Exists(s) || File.Exists(s))) { return false; };
+            return true;
         }
     }
 }

@@ -28,11 +28,20 @@ namespace DayZVersionToggle
                 // Update settings for next stage of install
                 Properties.Settings.Default.Version = cbCurrent.Text;
                 Properties.Settings.Default.Directory = tbDir.Text;
+
+                var i = new Installer();
+
+                i.ReceivedNotification += log.addLogEntry;
+                i.InstallComplete += log.done;
+
+                // Performs install in new thread so the window doesn't appear unresponsive during the copy operation.
+                var t = new Task(() => i.completeInstall());
+                t.Start();
+
                 if (log.ShowDialog() == DialogResult.OK) this.DialogResult = DialogResult.OK;
                 this.Close();
             }
         }
-
 
         private void btnDirChange_Click(object sender, EventArgs e)
         {
