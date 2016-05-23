@@ -1,0 +1,4 @@
+We're now moving the Steam app manifests around to fix the issue some people had with steam updating DayZ constantly.
+Program now waits asynchronously for the game to end (It wont appear unresponsive anymore, that was just me being lazy before :P) 
+Moved some code around to make it a bit more readable and have greater separation of concerns.
+Added a settings window which will allow you to recover a broken installation.

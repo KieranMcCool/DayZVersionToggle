@@ -68,7 +68,16 @@ namespace DayZVersionToggle
                 else if (File.Exists(target))
                 {
                     File.Move(destination, string.Format("{0} - {1}", destination, extension));
-                    File.Move(target, destination);
+                    try
+                    {
+                        File.Move(target, destination);
+                    }
+                    catch (Exception ex)
+                    {
+                        // If the app manifest was moved and not replaced, we have to reverse the actions or steam will think DayZ was uninstalled...
+                        File.Copy(string.Format("{0} - {1}", destination, extension), destination);
+                        throw ex;
+                    }
                 }
                 else throw new Exception(string.Format("Target directory: {0} does not exist on the filesystem.",
                     target));
